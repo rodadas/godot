@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://kina.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=2]
+
+[sub_resource type="CylinderShape" id=1]
+
+[sub_resource type="BoxShape" id=3]
+
+[node name="kina" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="Camera" type="Camera" parent="Area"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Area"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
